@@ -14,13 +14,13 @@ root = ctk.CTk()
 root.title("Fraud Detector")
 root.geometry("480x620")
 
-file_path     = tk.StringVar()
-selected_algo = tk.StringVar()
+file_path= tk.StringVar()
+selected_algo= tk.StringVar()
 
-# ── Headline ──────────────────────────────────────────────────────────────────
+#Headlin
 ctk.CTkLabel(root, text="Fraud Detector", font=ctk.CTkFont(size=28, weight="bold")).pack(pady=(20, 10))
 
-# ── File selector ─────────────────────────────────────────────────────────────
+#File selector
 file_label = ctk.CTkLabel(root, text="No file selected", text_color="gray60")
 file_label.pack()
 
@@ -32,20 +32,20 @@ def browse():
 
 ctk.CTkButton(root, text="Browse CSV", command=browse).pack(pady=(6, 16))
 
-# ── Algorithm radio buttons ───────────────────────────────────────────────────
+#Algorithm radio buttons
 ctk.CTkLabel(root, text="Algorithm", font=ctk.CTkFont(size=14, weight="bold")).pack()
 ctk.CTkRadioButton(root, text="Logistic Regression", variable=selected_algo, value="option_2").pack(pady=4)
 ctk.CTkRadioButton(root, text="Random Forest",       variable=selected_algo, value="option_1").pack(pady=4)
 
-# ── Results ───────────────────────────────────────────────────────────────────
+# Results
 results_label = ctk.CTkLabel(root, text="", justify="left", wraplength=440)
 results_label.pack(pady=(16, 4))
 
 sample_box = ctk.CTkTextbox(root, height=160, state="disabled")
 sample_box.pack(fill="x", padx=16, pady=(0, 16))
 
-# ── Run ───────────────────────────────────────────────────────────────────────
-def on_run():
+#Run
+def runAlgo():
     if not file_path.get():
         mb.showwarning("No file", "Please select a CSV file first.")
         return
@@ -72,6 +72,6 @@ def on_run():
     sample_box.configure(state="disabled")
 
 ctk.CTkButton(root, text="Run Detection", font=ctk.CTkFont(size=14, weight="bold"),
-              height=42, command=on_run).pack(pady=8)
+              height=42, command=runAlgo).pack(pady=8)
 
 root.mainloop()
